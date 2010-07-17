@@ -1,0 +1,16 @@
+Revision history for WebService-KoreanSpeller
+0.005  2010-07-18
+       Updated for the new URL.
+
+0.004  2009-04-08
+       Fixed regex special character problem.
+
+0.003  2009-04-07
+       Fixed error when there is no misspelled word in the text.
+
+0.002  2009-04-07
+       Fixed pod document.
+
+0.001  2009-04-06
+       Initial release.
+
