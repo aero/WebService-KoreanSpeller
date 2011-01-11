@@ -1,7 +1,7 @@
 package WebService::KoreanSpeller;
 # ENCODING: utf-8
 # ABSTRACT: Korean spellchecker
-our $VERSION = '0.005';
+our $VERSION = '0.006';
 $VERSION = eval $VERSION;
 
 use Any::Moose;
@@ -20,7 +20,7 @@ has 'text' => ( is => 'ro', isa => 'UTF8FlagOnString', required => 1 );
 sub spellcheck {
     my ($self) = @_;
     my $ua = LWP::UserAgent->new;
-    my $req = HTTP::Request->new(POST => 'http://speller.cs.pusan.ac.kr/PnuSpellerISAPI_201006/lib/PnuSpellerISAPI201006.dll?Check');
+    my $req = HTTP::Request->new(POST => 'http://speller.cs.pusan.ac.kr/PnuSpellerISAPI_201009/lib/PnuSpellerISAPI_201009.dll?Check');
     $req->content_type('application/x-www-form-urlencoded');
     my $text = $self->text;
     $req->content('text1='. encode('utf8',$text));
@@ -48,6 +48,20 @@ sub spellcheck {
 
 __PACKAGE__->meta->make_immutable;
 1;
+
+
+__END__
+=pod
+
+=encoding utf-8
+
+=head1 NAME
+
+WebService::KoreanSpeller - Korean spellchecker
+
+=head1 VERSION
+
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -97,4 +111,16 @@ Returns an obejct instance of this module. text should be "Unicode string"(a.k.a
 
 Returns results as array of hashes(if there is no error in the text, this method will return empty list), See SYNOPSIS. you can easily convert AoH to JSON or XML.
 
+=head1 AUTHOR
+
+C.H. Kang <chahkang@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by C.H. Kang.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+
