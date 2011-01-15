@@ -1,15 +1,14 @@
 package WebService::KoreanSpeller;
-# ENCODING: utf-8
 # ABSTRACT: Korean spellchecker
-our $VERSION = '0.006';
+our $VERSION = '0.007';
 $VERSION = eval $VERSION;
 
 use Any::Moose;
 use Any::Moose '::Util::TypeConstraints';
+use namespace::autoclean;
 use LWP::UserAgent;
 use utf8;
 use Encode qw/encode decode/;
-use namespace::autoclean;
 
 subtype 'UTF8FlagOnString'
     => as 'Str'
@@ -23,7 +22,7 @@ sub spellcheck {
     my $req = HTTP::Request->new(POST => 'http://speller.cs.pusan.ac.kr/PnuSpellerISAPI_201009/lib/PnuSpellerISAPI_201009.dll?Check');
     $req->content_type('application/x-www-form-urlencoded');
     my $text = $self->text;
-    $req->content('text1='. encode('utf8',$text));
+    $req->content('text1='. encode('utf8', $text));
     my $res = $ua->request($req);
     die unless $res->is_success;
     my $content = decode('utf8', $res->as_string);
@@ -35,18 +34,23 @@ sub spellcheck {
     foreach my $table (@tables) {
         my %item;
         @item{qw/incorrect correct comment/} =
-            ( map { $_ =~s/<.*?br\/>/\n/g;
-                    $_ =~s/^\s+//s;
-                    $_ =~s/\s+$//s;
-                    $_ } $table =~ m{<td.*?>(.*?)</td>}sg )[1,3,5];
+             (
+                map { 
+                        $_ =~s/<.*?br\/>/\n/g;
+                        $_ =~s/^\s+//s;
+                        $_ =~s/\s+$//s;
+                        $_
+                    } $table =~ m{<td.*?>(.*?)</td>}sg
+             )[1,3,5];
         $text =~ m/\Q$item{incorrect}\E/g;
-        $item{position} = ( pos $text ) - ( length $item{incorrect} );
+        $item{position} = pos($text) - length($item{incorrect});
         push @items, \%item;
     }
     return @items;
 }
 
 __PACKAGE__->meta->make_immutable;
+
 1;
 
 
@@ -61,7 +65,7 @@ WebService::KoreanSpeller - Korean spellchecker
 
 =head1 VERSION
 
-version 0.005
+version 0.007
 
 =head1 SYNOPSIS
 
