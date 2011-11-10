@@ -1,6 +1,6 @@
 package WebService::KoreanSpeller;
 # ABSTRACT: Korean spellchecker
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 $VERSION = eval $VERSION;
 
 use Any::Moose;
@@ -19,7 +19,7 @@ has 'text' => ( is => 'ro', isa => 'UTF8FlagOnString', required => 1 );
 sub spellcheck {
     my ($self) = @_;
     my $ua = LWP::UserAgent->new;
-    my $req = HTTP::Request->new(POST => 'http://speller.cs.pusan.ac.kr/PnuSpellerISAPI_201009/lib/PnuSpellerISAPI_201009.dll?Check');
+    my $req = HTTP::Request->new(POST => 'http://speller.cs.pusan.ac.kr/PnuSpellerISAPI_201107/lib/PnuSpellerISAPI_201107.dll?Check');
     $req->content_type('application/x-www-form-urlencoded');
     my $text = $self->text;
     $req->content('text1='. encode('utf8', $text));
