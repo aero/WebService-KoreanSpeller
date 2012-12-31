@@ -1,10 +1,10 @@
 package WebService::KoreanSpeller;
 # ABSTRACT: Korean spellchecker
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 $VERSION = eval $VERSION;
 
-use Any::Moose;
-use Any::Moose '::Util::TypeConstraints';
+use Moose;
+use Moose::Util::TypeConstraints;
 use namespace::autoclean;
 use LWP::UserAgent;
 use utf8;
@@ -53,7 +53,17 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 
+__END__
+
 =pod
+
+=head1 NAME
+
+WebService::KoreanSpeller - Korean spellchecker
+
+=head1 VERSION
+
+version 0.009
 
 =head1 SYNOPSIS
 
@@ -89,16 +99,29 @@ __PACKAGE__->meta->make_immutable;
 
 This module provides a Perl interface to the Web-based korean speller service( 온라인 한국어 맞춤법/문법 검사기 - http://speller.cs.pusan.ac.kr ).
 
+=head1 METHODS
+
+=head2 new( text => 'text for spell check' )
+
+Returns an obejct instance of this module. text should be "Unicode string"(a.k.a. perl's internal format - utf8 encoding/utf8 flag on)
+
+=head2 spellcheck
+
+Returns results as array of hashes(if there is no error in the text, this method will return empty list), See SYNOPSIS. you can easily convert AoH to JSON or XML.
+
 =head1 CAUTION
 
 I'm afraid we don't have a good open source korean spell checker. but there is a decent proprietary service that runs on the online website( 온라인 한국어 맞춤법/문법 검사기 - http://speller.cs.pusan.ac.kr ). So I made this module with web-scrapping approach, this is easy to mess up if they change layout of the website. Let me know if this does not work. *This module follows the same terms of the original service agreement.*
 
-=method new( text => 'text for spell check' )
+=head1 AUTHOR
 
-Returns an obejct instance of this module. text should be "Unicode string"(a.k.a. perl's internal format - utf8 encoding/utf8 flag on)
+C.H. Kang <chahkang@gmail.com>
 
-=method spellcheck
+=head1 COPYRIGHT AND LICENSE
 
-Returns results as array of hashes(if there is no error in the text, this method will return empty list), See SYNOPSIS. you can easily convert AoH to JSON or XML.
+This software is copyright (c) 2012 by C.H. Kang.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
