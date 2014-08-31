@@ -1,6 +1,8 @@
 Revision history for WebService-KoreanSpeller
 
 {{$NEXT}}
+
+0.011  2014-08-31 13:16:27 KST
        Migrating to Dist::Milla.
 
 0.010  2012-12-31
