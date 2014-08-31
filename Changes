@@ -1,4 +1,8 @@
 Revision history for WebService-KoreanSpeller
+
+{{$NEXT}}
+       Migrating to Dist::Milla.
+
 0.010  2012-12-31
        deprecate Any::Moose, use Moose.
 

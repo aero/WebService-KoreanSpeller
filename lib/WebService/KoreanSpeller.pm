@@ -1,6 +1,6 @@
 package WebService::KoreanSpeller;
-# ABSTRACT: Korean spellchecker
-our $VERSION = '0.010';
+
+our $VERSION = '0.011';
 $VERSION = eval $VERSION;
 
 use Moose;
@@ -57,13 +57,11 @@ __END__
 
 =pod
 
+=encoding utf8
+
 =head1 NAME
 
 WebService::KoreanSpeller - Korean spellchecker
-
-=head1 VERSION
-
-version 0.009
 
 =head1 SYNOPSIS
 
