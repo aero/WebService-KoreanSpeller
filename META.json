@@ -64,7 +64,7 @@
          "web" : "https://github.com/aero/WebService-KoreanSpeller"
       }
    },
-   "version" : "0.013",
+   "version" : "0.014",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0233"
 }
 

@@ -1,6 +1,7 @@
 Revision history for WebService-KoreanSpeller
 
 {{$NEXT}}
+       Remove debuging code.
 
 0.013  2017-05-28 22:16:11 KST
        Updated for the new renewed site.

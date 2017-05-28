@@ -1,6 +1,6 @@
 package WebService::KoreanSpeller;
 
-our $VERSION = '0.013';
+our $VERSION = '0.014';
 $VERSION = eval $VERSION;
 
 use Moose;
@@ -45,7 +45,6 @@ sub spellcheck {
                     } $table =~ m{<TD id='td(?:ErrorWord|ReplaceWord|Help)_\d+'.*?>(.*?)</TD>}sg
              )[0,1,2];
         $text =~ m/\Q$item{incorrect}\E/g;
-        print "pos: ", pos($text), "  length: ", length($item{incorrect}),"\n";
         $item{position} = pos($text) - length($item{incorrect});
         push @items, \%item;
     }
